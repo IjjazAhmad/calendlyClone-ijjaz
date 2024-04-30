@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.react-calendar {
+  border: none !important;
+}
+.react-calendar .react-calendar__navigation__prev2-button,
+.react-calendar__navigation__next2-button {
+  display: none;
+}
+.react-calendar button {
+  border-radius: 100px !important;
+}
+.react-calendar__tile {
+  padding: 16px 6.6667px !important;
+}
+.react-calendar__navigation {
+  justify-content: center !important;
+}
+.react-calendar__navigation__label {
+  flex-grow: 0.1 !important;
+}
+.overflow-y-auto::-webkit-scrollbar {
+  display: none !important;
+}
+.react-calendar__tile:disabled {
+  background-color: #fff !important;
+}
+.react-calendar__tile:enabled {
+  background-color: rgba(0, 105, 255, 0.07);
+}

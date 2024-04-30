@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  email        String       @unique
+  fullname     String
+  username     String       @unique
+  password     String
+  availability Availability @relation(fields: [id], references: [userId])
+   meeting      Meeting[]
+  createdAt    DateTime     @default(now())
+  updateAt     DateTime     @updatedAt
+}
+
+model Availability {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  startHour Int
+  endHour   Int
+  days      String[]
+  userId    String   @unique @map("_userId") @db.ObjectId
+  user      User?
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+}
+
+model Meeting {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  schedulerEmail String
+  schedulerName String
+  description String
+  selectedTime String
+  selectedDate String
+  hostName String
+  userId    String   @unique @map("_userId") @db.ObjectId
+  user User @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+}
